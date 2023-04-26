@@ -6,10 +6,11 @@ import { database } from '../../database/firebase.js';
 
 export default async function handler(req, res) {
   try {
-    let notification = {
-      message: 'Hello world!',
+
+    let notification = req.body ? req.body : {
+      message: 'This is a test notification',
       created: new Date(),
-    }
+    };
     const notificationsCollection = collection(database, 'notifications');
     await addDoc(notificationsCollection, notification);
     res.status(201).json({ message: 'Notification added successfully', body: notification });
