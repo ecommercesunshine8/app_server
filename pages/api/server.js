@@ -9,11 +9,11 @@ export default async function handler(req, res) {
     let notification = req.body ? {
       latitude: req.body.latitude,
       longitude: req.body.longitude,
-      created: new Date(),
+      created: Date.now(),
     } : {
       latitude: 13.7563,
       longitude: 100.5018,
-      created: new Date(),
+      created: Date.now(),
     };
     const notificationsCollection = collection(database, 'notifications');
     await addDoc(notificationsCollection, notification);
