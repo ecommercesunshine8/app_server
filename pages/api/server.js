@@ -3,12 +3,16 @@
 import { collection, addDoc } from 'firebase/firestore';
 import { database } from '../../database/firebase.js';
 
-
 export default async function handler(req, res) {
   try {
 
-    let notification = req.body ? req.body : {
-      message: 'This is a test notification',
+    let notification = req.body ? {
+      latitude: req.body.latitude,
+      longitude: req.body.longitude,
+      created: new Date(),
+    } : {
+      latitude: 13.7563,
+      longitude: 100.5018,
       created: new Date(),
     };
     const notificationsCollection = collection(database, 'notifications');
