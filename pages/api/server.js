@@ -10,10 +10,12 @@ export default async function handler(req, res) {
       latitude: req.body.latitude,
       longitude: req.body.longitude,
       created: Date.now(),
+      isSeen: false,
     } : {
       latitude: 13.7563,
       longitude: 100.5018,
       created: Date.now(),
+      isSeen: false,
     };
     const notificationsCollection = collection(database, 'notifications');
     await addDoc(notificationsCollection, notification);
