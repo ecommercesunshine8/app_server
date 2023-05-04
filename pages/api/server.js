@@ -4,9 +4,18 @@ import { collection, addDoc } from 'firebase/firestore';
 import { database } from '../../database/firebase.js';
 
 
+let positions = [
+  { latitude: 40.7128, longitude: -74.0060 },
+  { latitude: 41.8781, longitude: -87.6298 },
+  { latitude: 34.0522, longitude: -118.2437 },
+  { latitude: 29.7604, longitude: -95.3698 },
+  { latitude: 32.7767, longitude: -96.7970 },
+  { latitude: 39.7392, longitude: -104.9903 },
+];
+
 function getRandomLatitudeLongitude() {
-  const latitude = Math.random() * (90 - (-90)) + (-90);
-  const longitude = Math.random() * (180 - (-180)) + (-180);
+  let randomIndex = Math.floor(Math.random() * positions.length);
+  let { latitude, longitude } = positions[randomIndex];
   return { latitude, longitude };
 }
 
