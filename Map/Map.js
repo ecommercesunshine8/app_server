@@ -27,7 +27,7 @@ function ChangeView({ center }) {
 const Map = ({ markerPosition }) => {
 
 
-    const [zoom, setZoom] = useState(20);
+    const [zoom, setZoom] = useState(17);
     return (
         zoom &&
         <MapContainer
