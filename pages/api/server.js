@@ -3,6 +3,13 @@
 import { collection, addDoc } from 'firebase/firestore';
 import { database } from '../../database/firebase.js';
 
+
+function getRandomLatitudeLongitude() {
+  const latitude = Math.random() * (90 - (-90)) + (-90);
+  const longitude = Math.random() * (180 - (-180)) + (-180);
+  return { latitude, longitude };
+}
+
 export default async function handler(req, res) {
   try {
 
@@ -12,8 +19,8 @@ export default async function handler(req, res) {
       created: Date.now(),
       isSeen: false,
     } : {
-      latitude: 13.7563,
-      longitude: 100.5018,
+      latitude: getRandomLatitudeLongitude().latitude,
+      longitude: getRandomLatitudeLongitude().longitude,
       created: Date.now(),
       isSeen: false,
     };
