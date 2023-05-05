@@ -19,9 +19,43 @@ function getRandomLatitudeLongitude() {
   return { latitude, longitude };
 }
 
+async function sendPushNotification() {
+  const url = 'https://app.nativenotify.com/api/notification';
+  const appId = 7781;
+  const appToken = 'GqJ5aEB9CPpm7rg7cUBxGO';
+  const title = 'Camel Detection';
+  const body = 'A camel has been detected on the road.';
+  const dateSent = new Date().toLocaleString();
+  
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        appId,
+        appToken,
+        title,
+        body,
+        dateSent
+      })
+    });
+    
+    const responseData = await response.json();
+    console.log('Push notification sent successfully:', responseData);
+  } catch (error) {
+    console.error('Error sending push notification:', error);
+  }
+}
+
+sendPushNotification();
+
+
 export default async function handler(req, res) {
   try {
 
+    await sendPushNotification();
     let notification = req.body ? {
       latitude: req.body.latitude,
       longitude: req.body.longitude,
