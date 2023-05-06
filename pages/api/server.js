@@ -25,7 +25,7 @@ async function sendPushNotification() {
   const appToken = 'GqJ5aEB9CPpm7rg7cUBxGO';
   const title = 'Camel Detection';
   const body = 'A camel has been detected on the road.';
-  const dateSent = new Date().toLocaleString();
+  const dateSent = Date.now();
   
   try {
     const response = await fetch(url, {
@@ -42,8 +42,7 @@ async function sendPushNotification() {
       })
     });
     
-    const responseData = await response.json();
-    console.log('Push notification sent successfully:', responseData);
+    console.log('Push notification sent successfully:');
   } catch (error) {
     console.error('Error sending push notification:', error);
   }
